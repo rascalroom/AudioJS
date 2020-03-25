@@ -1,0 +1,84 @@
+<div id="utterance">
+
+  <div class="row">
+    <div class="container">
+      <div class="section">
+
+        <h5>録音</h5>
+
+      </div>
+      <div class="section">
+
+        <div v-if="ls != 'none'">
+
+          <div class="center">
+            <p><button id="stop"><i class="material-icons large">keyboard_voice</i></button></p>
+          </div>
+
+        </div>
+        <div v-else>
+          <h6>
+            <p>セッションが切れです。</p>
+            <p>
+              <a href="/login">再ログインはこちら</a>
+            </p>
+          </h6>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+console.log(navigator);
+    //様々なブラウザでマイクへのアクセス権を取得する
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+
+    //audioのみtrue。Web Audio APIが問題なく使えるのであれば、第二引数で指定した関数を実行する
+    navigator.getUserMedia({
+        audio: true,
+        video: false
+    }, successFunc, errorFunc);
+
+    function successFunc(stream) {
+        var recorder = new MediaRecorder(stream, {
+            mimeType: 'video/webm;codecs=vp9'
+        });
+
+        //音を拾い続けるための配列。chunkは塊という意味
+        var chunks = [];
+
+        //集音のイベントを登録する
+        recorder.addEventListener('dataavailable', function(ele) {
+            if (ele.data.size > 0) {
+                chunks.push(ele.data);
+            }
+        });
+
+        // recorder.stopが実行された時のイベント
+        recorder.addEventListener('stop', function() {
+
+            var dl = document.querySelector("#dl");
+
+            //集音したものから音声データを作成する
+            dl.href = URL.createObjectURL(new Blob(chunks));
+            dl.download = 'sample.wav';
+        });
+
+        recorder.start();
+
+        //10秒後に集音を終了する。
+        setTimeout(function() {
+            alert("stop");
+            recorder.stop();
+        }, 10000);
+    }
+
+    // Web Audio APIが使えなかった時
+    function errorFunc(error) {
+        alert("error");
+    }
+
+</script>

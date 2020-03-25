@@ -1,0 +1,35 @@
+<div id="utterance">
+
+  <div class="row">
+    <div class="container">
+      <div class="section">
+
+        <h5>言い訳メニュー</h5>
+
+      </div>
+      <div class="section">
+
+        <div v-if="ls != 'none'">
+
+          <div id="utteranceMeta">
+            <utterances number="1" v-bind:recordID="1"></utterances>
+            <utterances number="2" v-bind:recordID="2"></utterances>
+            <utterances number="3" v-bind:recordID="3"></utterances>
+            <utterances number="4" v-bind:recordID="4"></utterances>
+          </div>
+
+        </div>
+        <div v-else>
+          <h6>
+            <p>セッションが切れです。</p>
+            <p>
+              <a href="/login">再ログインはこちら</a>
+            </p>
+          </h6>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

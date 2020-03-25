@@ -1,0 +1,40 @@
+<div id="login">
+
+  <div class="row">
+    <div class="container">
+      <div class="section">
+
+        <h5>ログイン</h5>
+
+      </div>
+      <div class="section">
+
+        <div id="loginform">
+          <form action="/loginSend" method="POST">
+            E-Mail: <input type="text" id="eMail" name="eMail">
+            パスワード: <input type="password" id="password" name="password">
+            <p><input type="submit" id="send" value="ログイン"></p>
+          </form>
+        </div>
+
+      </div>
+      <div class="section">
+        <a href="/createAccount">アカウント作成はこちらから</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+lsClear();
+
+function lsClear() {
+
+  localStorage.removeItem('eMail');
+
+}
+
+</script>
+

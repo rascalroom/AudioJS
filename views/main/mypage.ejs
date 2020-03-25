@@ -1,0 +1,37 @@
+<div id="mysetting">
+
+  <div class="row">
+    <div class="container">
+      <div class="section">
+
+        <h5>マイページ</h5>
+
+      </div>
+      <div class="section">
+
+        <div v-if="ls != 'none'">
+
+          <table>
+            <tr><th>アカウントID</th><td>{{ mysettings.id }}</td></tr>
+            <tr><th>E-Mail</th><td>{{ mysettings.eMail }}</td></tr>
+            <tr><th>アイテム1</th><td>{{ mysettings.item1.recordName }}</td></tr>
+            <tr><th>アイテム2</th><td>{{ mysettings.item2.recordName }}</td></tr>
+            <tr><th>アイテム3</th><td>{{ mysettings.item3.recordName }}</td></tr>
+            <tr><th>アイテム4</th><td>{{ mysettings.item4.recordName }}</td></tr>
+          </table>
+
+        </div>
+        <div v-else>
+          <h6>
+            <p>セッションが切れです。</p>
+            <p>
+              <a href="/login">再ログインはこちら</a>
+            </p>
+          </h6>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

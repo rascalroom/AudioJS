@@ -1,0 +1,49 @@
+<script>
+
+lsSave();
+
+function lsSave() {
+
+  var ls = localStorage.getItem('eMail');
+
+  if(!ls) ls = 'none';
+  if(ls=='null') ls = 'none';
+  if(ls==null) ls = 'none';
+
+  if(ls=='none'){
+    var eMailCookie = document.cookie.replace(/(?:(?:^|.*;\s*)eMail\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    if(!eMailCookie) eMailCookie = 'none';
+    if(eMailCookie=='null') eMailCookie = 'none';
+    if(eMailCookie==null) eMailCookie = 'none';
+    if(eMailCookie=='') eMailCookie = 'none';
+
+    if(eMailCookie=='none') {
+      moveLogin();
+      window.location.href = '/login';
+    } else {
+      localStorage.setItem('eMail', eMailCookie);
+      var ls = eMailCookie;
+    }
+  }
+
+  window.location.href = '/?ls=' + ls;
+
+}
+
+function getParam(param, url) {
+  param = param.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + param + "(=([^&#]+)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return null;
+  return decodeURIComponent(results[2].replace(/\+/g," "));
+}
+
+function moveLogin(){
+  var a = document.createElement('a');
+  a.href = 'http://192.168.0.5/login';
+  a.click();
+}
+</script>
+
